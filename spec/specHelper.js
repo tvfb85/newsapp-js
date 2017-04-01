@@ -9,7 +9,7 @@ var assert = {
 
   isEqual: function(actual, expected, testName) {
     if (actual !== expected) {
-      text = "ASSERTION FAILED:  <span style='color:black'>" + testName + "</span><br>" + actual + "IS NOT EQUAL TO" + expected;
+      text = "ASSERTION FAILED:  <span style='color:black'>" + testName + "</span><br>" + actual + " IS NOT EQUAL TO" + expected;
       color = "red";
     }
     else {
@@ -17,5 +17,18 @@ var assert = {
       color = "green";
     }
     this.testMessage(text, color);
+  },
+
+    isTrue: function(assertionToCheck, testName) {
+    if(!assertionToCheck){
+      text = "ASSERTION FAILED:  <span style='color:black'>" + testName + "</span><br>" + assertionToCheck + " IS NOT TRUTHY";
+      color = "red"
+    }
+    else {
+      text = "TEST PASSED!  <span style='color:black'>" + testName + "</span><br>";
+      color = "green";
+    }
+    this.testMessage(text, color);
   }
+
 }
