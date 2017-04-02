@@ -4,7 +4,7 @@
     this.article = article;
   }
 
-  ArticleView.prototype.fullArticleHTML = function() {
+  ArticleView.prototype.displayArticleContent = function() {
     return "<span>" + this.article.seeContent() + "</span>";
   }
 

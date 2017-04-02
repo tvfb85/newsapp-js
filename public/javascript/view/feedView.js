@@ -8,7 +8,7 @@
     var articles = this.feed.allArticles();
     var str = "";
     for(var i = 0; i < articles.length; i++){
-      str += "<li>" + articles[i].seeHeadline() + "</li>";
+      str += "<li><a href='#articles/"+ i + "' id='"+ i + "'>" + articles[i].seeHeadline() + "</a></li>";
 }
 return str;
   }
