@@ -29,6 +29,25 @@ var assert = {
       color = "green";
     }
     this.testMessage(text, color);
+  },
+
+  isInstanceOf: function(object, Constructor, testName){
+    if(object.constructor !== Constructor){
+      text = "COMPARISON FAILED: " + object + "** is not an instance of.** " + Constructor;
+      color = "red";
+    }
+    else {
+      text = "TEST PASSED! <span style='color:black'>" + testName + "</span><br>" + object + " **is an instance of** " + Constructor.name;
+      color = "green";
+    }
+    this.testMessage(text, color);
+  },
+
+  createMock: function(name, method, returns){
+    var obj = {};
+    obj[name] = name;
+    obj[method] = function(){return returns;};
+    return obj;
   }
 
 }
