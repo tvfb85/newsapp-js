@@ -1,0 +1,24 @@
+body {
+  margin:0;
+  padding:0;
+  background-color: #fff;
+}
+
+#right {
+  margin-left:0;
+  padding-left: 0;
+}
+.element img {
+  max-width:100%;
+  height: auto;
+}
+.feed {
+  display:inline-block;
+  width:150px;
+  margin: 0 10px;
+vertical-align: text-top;
+}
+
+.feed img {
+  width:100%;
+}

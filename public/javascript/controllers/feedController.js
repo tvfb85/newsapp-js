@@ -1,32 +1,69 @@
 (function(exports) {
-  var title;
-  var content;
+
 
   function FeedController(feed) {
     this.feed = feed;
     this.feedview = new FeedView(this.feed);
+    // this.requestNewsFeed();
   };
 
+
   FeedController.prototype.requestNewsFeed = function() {
+
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?q=cats&format=json&show-fields=starRating,headline,body,byline,trailText,thumbnail,short-url&order-by=newest", false);
+    // var params = "q=cats&format=json&show-fields=headline,body,thumbnail,short-url&order-by=newest&callback=onreadystatechange";
+    xhttp.open("GET", "http://news-summary-api.herokuapp.com/guardian?apiRequestUrl=http://content.guardianapis.com/search?show-fields=headline,body,thumbnail,short-url", false);
     xhttp.send();
+
     var response = JSON.parse(xhttp.responseText);
     var results = response["response"]["results"];
-    console.log(response);
-    for(var i = 0; i < results.length; i++) {
-        var headline = results[i].webTitle;
-        this.feed.createArticle(headline, "some content");
-    }
-  }
+      for(var i = 0; i < results.length; i++) {
+          var headline = results[i].fields["headline"];
+          var thumbnail = results[i].fields["thumbnail"];
+          var body = results[i].fields["body"];
+          this.feed.createArticle(headline, thumbnail, body);
+      }
+      console.log(this.feed);
+
+}
+
+  //   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  //   xhttp.onreadystatechange = function() {
+  //
+  //     if(xhttp.readyState == 4 && xhttp.status == 200) {
+  //         var response = JSON.parse(xhttp.response);
+  //         var results = response["response"]["results"];
+  //         for(var i = 0; i < results.length; i++) {
+  //             var headline = results[i].fields["headline"];
+  //             var body = results[i].fields["body"];
+  //             this.feed.createArticle(headline, body);
+  //         }
+  //       }
+  // };
+  // console.log(headline)
+  //   xhttp.send();
+  //   // var response = JSON.parse(xhttp.response);
+  //   // var results = response["response"]["results"];
+  //   // console.log(xhttp);
+  //   // for(var i = 0; i < results.length; i++) {
+  //   //     var headline = results[i].webTitle;
+  //   //     this.feed.createArticle(headline, "some content");
+  //   // }
+  // }
+
+  // FeedController.prototype.createArticleFromFeed = function(headline, body) {
+  //   this.feed.createArticle(headline, thumbnail, body);
+  // }
 
   FeedController.prototype.addHTMLHeadlines = function(){
     document.getElementById('app').innerHTML = this.feedview.displayHeadlines();
   };
 
   FeedController.prototype.addHTMLContent = function(index){
+
     articleview = new ArticleView(this.feed.allArticles()[index]);
-    document.getElementById('app').innerHTML = articleview.displayArticleContent();
+    console.log(articleview);
+    document.getElementById('article-content').innerHTML = articleview.displayArticleContent();
   };
 
     exports.FeedController = FeedController;

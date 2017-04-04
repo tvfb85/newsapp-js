@@ -1,3 +1,4 @@
+
 (function(exports) {
 
   function FeedView(feed) {
@@ -8,7 +9,7 @@
     var articles = this.feed.allArticles();
     var str = "";
     for(var i = 0; i < articles.length; i++){
-      str += "<li><a href='#articles/"+ i + "' id='"+ i + "'>" + articles[i].seeHeadline() + "</a></li>";
+      str += "<div class='feed'><a href='#articles/"+ i + "' id='"+ i + "'><img src='" + articles[i].seeThumbnail() + "'/>" + articles[i].seeHeadline() + "</a></div>";
 }
 return str;
   }

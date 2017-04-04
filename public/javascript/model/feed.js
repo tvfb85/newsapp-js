@@ -4,8 +4,8 @@
     this.articles = [];
   }
 
-  Feed.prototype.createArticle = function(headline, content) {
-    article = new Article(headline, content);
+  Feed.prototype.createArticle = function(headline, thumbnail, content) {
+    article = new Article(headline, thumbnail, content);
     this._saveArticle(article);
   }
 
