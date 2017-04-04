@@ -54,6 +54,13 @@
   // FeedController.prototype.createArticleFromFeed = function(headline, body) {
   //   this.feed.createArticle(headline, thumbnail, body);
   // }
+FeedController.prototype.date = function(){
+n =  new Date();
+// y = n.getFullYear();
+// m = n.getMonth() + 1;
+// d = n.getDate();
+document.getElementById("date").innerHTML = n.toDateString();
+}
 
   FeedController.prototype.addHTMLHeadlines = function(){
     document.getElementById('app').innerHTML = this.feedview.displayHeadlines();

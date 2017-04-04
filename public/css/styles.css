@@ -4,9 +4,13 @@ body {
   background-color: #fff;
 }
 
+#left {
+  border-right: 3px solid #333;
+}
+
 #right {
   margin-left:0;
-  padding-left: 0;
+  padding-left: 10px;
 }
 .element img {
   max-width:100%;
